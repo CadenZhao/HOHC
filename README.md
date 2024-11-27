@@ -21,7 +21,7 @@ These insights provide a foundation for understanding hormone-mediated inter-org
 
 ### Visit our website:
 [Project Website](https://omicsexplorer.shinyapps.io/HOHC/)  
-![Website QR Code](qr-code.png)
+<img src="qr-code.png" alt="Website QR Code" width="200">
 
 ---
 
