@@ -25,8 +25,6 @@ These insights provide a foundation for understanding hormone-mediated inter-org
 [Project Website](https://omicsexplorer.shinyapps.io/HOHC/)  
 ![Website QR Code](qr-code.png)
 
-> Replace `https://example.com` with the actual URL and `qr-code.png` with the path to your QR code image file.
-
 ---
 
 ## Citation
