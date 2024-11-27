@@ -1,0 +1,12 @@
+name: HOHC
+title: HOHC
+username: omicsexplorer
+account: omicsexplorer
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13444974
+bundleId: 9413712
+url: https://omicsexplorer.shinyapps.io/HOHC/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
