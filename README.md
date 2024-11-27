@@ -1,4 +1,4 @@
-# Analysis of Hormone-Mediated Human Inter-Organ Communications
+# Human Organ Hormonal Communications (HOHC)
 
 This study explores the intricate crosstalk between hormones and their receptors (HRs) across human tissues and organs. By curating hormone-HR pairing information and hormone secretion sources through literature and database searches, we constructed tissue/organ-hormone-HR networks using GTEx RNA-seq data.
 
@@ -20,10 +20,10 @@ These insights provide a foundation for understanding hormone-mediated inter-org
 ## Access the Project
 
 ### Visit our website:
-[Project Website](https://omicsexplorer.shinyapps.io/HOHC/)  
+[Project Website: Human Organ Hormonal Communications (HOHC)](https://omicsexplorer.shinyapps.io/HOHC/)  
 <img src="qr-code.png" alt="Website QR Code" width="300">
 
 ---
 
 ## Citation
-If you use this work in your research, please cite us as:  
+If you use this work in your research, please cite us as:
