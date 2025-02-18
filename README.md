@@ -21,7 +21,7 @@ These insights provide a foundation for understanding hormone-mediated inter-org
 
 ### Visit our website:
 [Project Website: Human Organ Hormonal Communications (HOHC)](https://omicsexplorer.shinyapps.io/HOHC/)  
-<img src="qr-code.png" alt="Website QR Code" width="300">
+<img src="qr-code.png" alt="Website QR Code" width="200">
 
 ---
 
