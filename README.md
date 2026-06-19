@@ -26,4 +26,6 @@ These insights provide a foundation for understanding hormone-mediated inter-org
 ---
 
 ## Citation
-If you use this work in your research, please cite us as:
+If you use HOHC in your research, please cite:
+
+Zhao X, Wang XJ. *A systematic analysis of human hormone receptors.* Science China Life Sciences. 2025. [https://doi.org/10.1007/s11427-024-2950-4](https://doi.org/10.1007/s11427-024-2950-4)
