@@ -1,0 +1,12 @@
+# Large raw data (156 MB, exceeds GitHub's 100 MB limit).
+# The compressed copy data/GTEx_HR_combined.tsv.zip is tracked instead;
+# unzip it to regenerate this file.
+data/GTEx_HR_combined.tsv
+
+# Local tooling
+.claude/
+.Rhistory
+.RData
+.DS_Store
+rsconnect/
+redirect_app/rsconnect/

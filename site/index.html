@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOHC — Human Organ Hormonal Communication</title>
+  <meta name="description" content="HOHC: an interactive atlas of human organ hormonal communication, linking hormone classes, source organs, receptor organs and receptor types from GTEx expression data.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preload" href="data/hohc_data.json" as="fetch" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261002g">
+</head>
+<body>
+  <header class="header">
+    <div class="header-brand">
+      <button class="logo" id="logoBtn" title="HOHC — replay" aria-label="HOHC logo">
+        <svg viewBox="0 0 132 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lgA" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#f472b6"/>
+              <stop offset="1" stop-color="#e11d48"/>
+            </linearGradient>
+            <linearGradient id="lgB" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#38bdf8"/>
+              <stop offset="1" stop-color="#818cf8"/>
+            </linearGradient>
+            <linearGradient id="lgC" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#a78bfa"/>
+              <stop offset="1" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <path class="w w1" stroke="url(#lgA)" d="M4 22 C14 4, 24 4, 34 22 S54 40, 64 22 S84 4, 94 22 S114 40, 128 22"/>
+          <path class="w w2" stroke="url(#lgB)" d="M4 22 C14 40, 24 40, 34 22 S54 4, 64 22 S84 40, 94 22 S114 4, 128 22"/>
+          <path class="w w3" stroke="url(#lgC)" d="M4 22 C18 12, 28 32, 42 22 S66 12, 80 22 S104 32, 128 22"/>
+        </svg>
+      </button>
+      <div>
+        <h1>HOHC</h1>
+        <p>Human Organ Hormonal Communication</p>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="header-stats" id="headerStats"></div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark" aria-label="Toggle color theme">☾</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Sex</h2>
+        <div class="seg" id="sexSeg">
+          <button class="seg-btn active" data-value="Male">Male</button>
+          <button class="seg-btn" data-value="Female">Female</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Hormone</h2>
+        <label class="field">
+          <span>Hormone class</span>
+          <select id="hormoneClass">
+            <option value="All">All</option>
+            <option>Amino acid-derived</option>
+            <option>Lipid-derived</option>
+            <option>Peptide</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Hormone name</span>
+          <div class="multi" id="hormoneName"></div>
+        </label>
+      </section>
+
+      <section class="panel">
+        <h2>Organs</h2>
+        <label class="field">
+          <span>Outgoing organ (hormone source)</span>
+          <div class="multi" id="hormoneTissue"></div>
+        </label>
+        <label class="field">
+          <span>Incoming organ (receptor site)</span>
+          <div class="multi" id="receptorTissue"></div>
+        </label>
+      </section>
+
+      <section class="panel">
+        <h2>Receptor</h2>
+        <label class="field">
+          <span>Receptor class</span>
+          <select id="receptorClass">
+            <option value="All">All</option>
+            <option>Membrane HR</option>
+            <option>Nuclear HR</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Receptor gene (HGNC symbol)</span>
+          <div class="multi" id="receptorName"></div>
+        </label>
+      </section>
+
+      <section class="panel">
+        <h2>Advanced</h2>
+        <label class="field">
+          <span>Top organs per receptor: <b id="topNVal">3</b></span>
+          <input type="range" id="topN" min="1" max="10" step="1" value="3">
+        </label>
+        <label class="field">
+          <span>Expression range (log1p TPM): <b id="tpmVal">0.10 – 6.35</b></span>
+          <div class="dual-range">
+            <input type="range" id="tpmLo" min="0" max="7" step="0.05" value="0.1">
+            <input type="range" id="tpmHi" min="0" max="7" step="0.05" value="6.35">
+          </div>
+        </label>
+      </section>
+
+      <div class="actions">
+        <button id="resetBtn" class="btn btn-ghost">Reset</button>
+        <button id="downloadBtn" class="btn btn-primary">Download data</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div id="message" class="message" hidden></div>
+      <div class="chart-viewport" id="chartViewport">
+        <div id="chart" class="chart"></div>
+      </div>
+      <div class="zoom-controls">
+        <button id="zoomOut" title="Zoom out">−</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomIn" title="Zoom in">+</button>
+        <button id="zoomReset" title="Reset zoom">⤢</button>
+      </div>
+      <div class="legend" id="legend"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2024–2026 HOHC. Mean TPM computed from GTEx v8 expression data.</p>
+    <p>Suggestions or new hormones/receptors to share? Contact
+      <a href="mailto:xjzhao777@163.com">xjzhao777@163.com</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <script src="js/app.js?v=20261002g"></script>
+</body>
+</html>
